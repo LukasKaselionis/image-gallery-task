@@ -3,6 +3,8 @@ import './App.css';
 import axios from 'axios';
 import Header from './components/Header/Header';
 import Loader from './components/Loader/Loader';
+import ImageList from './components/ImageList/ImageList';
+
 
 class App extends Component {
   state = {
@@ -38,6 +40,7 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
+        <ImageList foundImages={this.state.images} />
         <Loader />
       </div>
     );
