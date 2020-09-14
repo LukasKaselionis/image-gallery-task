@@ -4,11 +4,10 @@ import axios from 'axios';
 import Header from './components/Header/Header';
 import Loader from './components/Loader/Loader';
 import ImageList from './components/ImageList/ImageList';
-
+import InfiniteScroll from 'react-infinite-scroll-component';
 
 class App extends Component {
   state = {
-    loading: false,
     images: []
   }
 
@@ -26,8 +25,9 @@ class App extends Component {
       }
     })
       .then(response => {
-        this.setState({ images: [...this.state.images, ...response.data] });
-        console.log(response.data);
+        setTimeout(() => {
+          this.setState({ images: [...this.state.images, ...response.data] });
+        }, 500);
       })
       .catch(err => {
         if (err.response) {
@@ -40,8 +40,14 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <ImageList foundImages={this.state.images} />
-        <Loader />
+        <InfiniteScroll
+        dataLength={this.state.images.length}
+        next={this.fetchImages}
+        hasMore={true}
+        loader={<Loader />}
+        >
+          <ImageList foundImages={this.state.images} />
+        </InfiniteScroll>
       </div>
     );
   }
