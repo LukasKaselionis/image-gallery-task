@@ -5,11 +5,13 @@ import Header from './components/Header/Header';
 import Loader from './components/Loader/Loader';
 import ImageList from './components/ImageList/ImageList';
 import Button from './components/UI/Button';
+import Error from './components/Error/Error';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 class App extends Component {
   state = {
-    images: []
+    images: [],
+    errorMessage: ''
   }
 
   componentDidMount() {
@@ -32,7 +34,7 @@ class App extends Component {
       })
       .catch(err => {
         if (err.response) {
-          console.log(err.response);
+          this.setState({errorMessage: err.response.data});
         }
       });
   }
@@ -54,6 +56,7 @@ class App extends Component {
         >
           <ImageList foundImages={this.state.images} />
         </InfiniteScroll>
+        <Error message={this.state.errorMessage} />
       </div>
     );
   }
