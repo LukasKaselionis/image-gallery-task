@@ -4,6 +4,7 @@ import axios from 'axios';
 import Header from './components/Header/Header';
 import Loader from './components/Loader/Loader';
 import ImageList from './components/ImageList/ImageList';
+import Button from './components/UI/Button';
 import InfiniteScroll from 'react-infinite-scroll-component';
 
 class App extends Component {
@@ -40,11 +41,12 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
+        <Button />
         <InfiniteScroll
-        dataLength={this.state.images.length}
-        next={this.fetchImages}
-        hasMore={true}
-        loader={<Loader />}
+          dataLength={this.state.images.length}
+          next={this.fetchImages}
+          hasMore={true}
+          loader={<Loader />}
         >
           <ImageList foundImages={this.state.images} />
         </InfiniteScroll>
