@@ -2,16 +2,16 @@
     position: fixed;
     bottom: 80px;
     right: 50px;
-    background: rgba(0,0,0,.5);
+    background: rgba(0,0,0,.2);
     width: 65px;
     height: 65px;
     display: grid;
     place-items: center;
     border-radius: 15px;
     color: #ffffff;
-    transition: background-color .3s, 
+    transition: background-color .6s, 
     opacity .5s, visibility .5s;
-    /* visibility: hidden; */
+    visibility: visible;
     z-index: 1000;
 }
 

@@ -37,11 +37,15 @@ class App extends Component {
       });
   }
 
+  handleScrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
   render() {
     return (
       <div className="App">
         <Header />
-        <Button />
+        <Button scroll={this.handleScrollToTop} />
         <InfiniteScroll
           dataLength={this.state.images.length}
           next={this.fetchImages}
