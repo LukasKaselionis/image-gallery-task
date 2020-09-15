@@ -34,7 +34,7 @@ class App extends Component {
       })
       .catch(err => {
         if (err.response) {
-          this.setState({errorMessage: err.response.data});
+          this.setState({ errorMessage: err.response.data });
         }
       });
   }
@@ -44,6 +44,11 @@ class App extends Component {
   }
 
   render() {
+    let errorMessageDiv = <Error message={this.state.errorMessage} />
+    if (this.state.errorMessage === '') {
+      errorMessageDiv = null;
+    } 
+
     return (
       <div className="App">
         <Header />
@@ -56,7 +61,7 @@ class App extends Component {
         >
           <ImageList foundImages={this.state.images} />
         </InfiniteScroll>
-        <Error message={this.state.errorMessage} />
+        {errorMessageDiv}
       </div>
     );
   }
